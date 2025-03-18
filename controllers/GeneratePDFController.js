@@ -1,10 +1,7 @@
-
-const fs = require('fs');
-const path = require("path");
-const PuppeteerHTMLPDF = require("puppeteer-html-pdf");
-const handlebars = require("handlebars");
+const PDFService = require('../services/PDFService');
 
 class GeneratePDFController {
+    /*
     static async GeneratePDF(req,res) {
         const htmlPDF = new PuppeteerHTMLPDF();
 
@@ -30,6 +27,13 @@ class GeneratePDFController {
         //res.send("https://research.google.com/pubs/archive/44678.pdf");
         return res.send(html);
       
+    }
+    */
+
+    static async SaveFilter(req,res) {
+        const body = req.body;
+        const result = await PDFService.SaveFilter(body);
+        res.send(result);
     }
 }
 

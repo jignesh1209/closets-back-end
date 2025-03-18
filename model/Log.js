@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) => {
     logdate: {
       type: Sequelize.DATE,
       default: Sequelize.NOW,
+    },
+    jsoncontent: {
+      type: Sequelize.STRING,
     }
   },{
     createdAt: false,
