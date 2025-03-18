@@ -13,13 +13,10 @@ const app =  express();
 
 const PORT = process.env.PORT || 3001;
 
-var corsOptions = {
-    origin: "http://localhost:3000"
-  };
-  
-  app.use(cors(corsOptions));
 
-  // Serve Swagger documentation
+app.use(cors());
+
+ // Serve Swagger documentation
 
 
 app.engine('handlebars', hbs.engine());
@@ -39,6 +36,6 @@ app.use('/api/user', loginRoutes);
 app.use('/api/pdf', pdfRoutes);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-app.listen(PORT, () =>{
+app.listen(PORT, () => {
     console.log(`application working on port ${PORT}`)
 });
