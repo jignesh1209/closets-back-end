@@ -6,23 +6,25 @@ const brcypt = require('bcrypt');
 
 class LoginService {
     static async signIn(email, password) {
-        const user = await User.findOne({ where: { email: email, password: password }});
-        if(user !== null) {
-            return user;
+        const user = await User.findOne({ where: { email: email }});
+        const encPass = await brcypt.compare(password, user.password);
+        if(user != null && encPass) {
+            return {userid: user.userid, email: user.email};
         } else {
-            return false;
+            return false
         }
     }
 
     static async PasswordEncrypt(password) {
-        const encPass = brcypt.hashSync(password,5);
+        const encPass = await brcypt.hash(password,5);
         return encPass;
     }
 
     static async CreateUser(email,pass) {
         try
         {
-            const user = await User.create({email: email, password: pass});
+            const encPass = await brcypt.hash(pass,5);
+            const user = await User.create({email: email, password: encPass});
             if(user !== null) {
                 return true;
             } else {

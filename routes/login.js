@@ -3,13 +3,8 @@ const Login = require('../controllers/Login');
 
 const routes = express.Router();
 
-
-routes.get('/', (req,res) => {
-    res.send('Hello World');
-});
-
 /** POST: http://localhost:3001/api/signin 
- * @param : {
+ * @body : {
   "email" : "example123",
   "password": "example123"
 }
@@ -19,7 +14,7 @@ routes.post('/signin',(req,res) => {
 });
 
 /** POST: http://localhost:3001/api/create
- * @param : {
+ * @body : {
   "email" : "example123",
   "pass": "example123"
 }
@@ -29,12 +24,12 @@ routes.post('/createuser', (req, res) =>{
 });
 
 /** POST: http://localhost:3001/api/encryptpassword
- * @param : {
+ * @body : {
   "pass" : "example123",
 }
 */
 routes.post('/encryptpass', (req, res) => {
-    Login.PassowordEncrypt(res,res);
+    Login.PassowordEncrypt(req,res);
 })
 
 

@@ -7,6 +7,7 @@ const cors = require("cors");
 require('dotenv').config();
 const swaggerUI = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
+const swaggerjsonFilePath = require("./swagger.json");
 
 const app =  express();
 
@@ -34,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/user', loginRoutes);
 app.use('/api/pdf', pdfRoutes);
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerjsonFilePath));
 
 app.listen(PORT, () => {
     console.log(`application working on port ${PORT}`)

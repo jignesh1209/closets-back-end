@@ -1,0 +1,182 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Closets API for PDF",
+      "description": "API for Managing filter and login"
+    },
+    "host": "localhost:3001",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+ 
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api/user/signin": {
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "pass": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "You will get user information"
+            },
+            "422": {
+              "description": "No user information"
+            }
+          }
+        }
+      },
+      "/api/user/createuser": {
+        "post": {
+          "description": "To create a user",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "return true if user successfully create!"
+            },
+            "400": {
+                "description": "Validation error"
+            },
+            "500": {
+              "description": "Unable to create a user!"
+            }
+          }
+        }
+      },
+      "/api/user/encryptpass": {
+        "post": {
+          "description": "To encrypt password",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pass": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "return encrypted string"
+            },
+            "400": {
+                "description": "Validation error"
+            },
+            "500": {
+              "description": "Unable to generate a encrypt string"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "errorResponse.400": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 400
+          },
+          "message": {
+            "type": "string",
+            "example": "The request was malformed or invalid. Please check the request parameters."
+          }
+        }
+      },
+      "errorResponse.401": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 401
+          },
+          "message": {
+            "type": "string",
+            "example": "Authentication failed or user lacks proper authorization."
+          }
+        }
+      },
+      "errorResponse.403": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 403
+          },
+          "message": {
+            "type": "string",
+            "example": "You do not have permission to access this resource."
+          }
+        }
+      },
+      "errorResponse.404": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "404"
+          },
+          "message": {
+            "type": "string",
+            "example": "The requested resource could not be found on the server."
+          }
+        }
+      },
+      "errorResponse.500": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 500
+          },
+          "message": {
+            "type": "string",
+            "example": "An unexpected error occurred on the server. Please try again later."
+          }
+        }
+      }
+    }
+  }
